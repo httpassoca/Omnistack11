@@ -1,5 +1,11 @@
 const connection = require("../database/connection");
 module.exports = {
+
+  /*
+    index => list all incidents
+    create => create incidents
+    delete => delete incidents
+  */
   async index(req, res) {
     const incidents = await connection("incidents").select("*");
     return res.json(incidents);
@@ -16,5 +22,19 @@ module.exports = {
       ong_id
     });
     return res.json({ id });
+  },
+  async delete(req, res) {
+    const { id } = req.params;
+    const ong_id = req.headers.authorization;
+    // Verify if the Incident
+    const incident = await connection('incidents').where('id',id).select('ong_id').first();
+    // If the Incident ong_id doesnt match with the authorization id from the ong connected
+    if(incident.ong_id != ong_id){
+        // 401 == Failed because the operation are not permitted
+        return res.status(401).json({error: "Operation not permitted"});
+    }
+    await connection('incidents').where('id',id).delete();
+    // 204 == Success but no content to return
+    return res.status(204).send();
   }
 };

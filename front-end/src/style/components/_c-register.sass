@@ -1,0 +1,29 @@
+.register
+    .content
+        @extend %u-full-w
+        padding: 96px
+        background-color: map-get($colors,background )
+        box-shadow: 0 0 100px rgba(0,0,0,.1)
+        border-radius: 8px
+        display: flex
+        justify-content: space-between
+        align-items: center
+    section
+        @extend %u-full-w
+        max-width: 380px
+        text-align: center
+        p
+            text-align: left
+            font-size: 1.28rem
+            line-height: 32px
+            color: map-get($colors,text )
+    form
+        @extend %u-full-w
+        max-width: 450px
+        input
+            margin-top: 8px
+        .input-group
+            display: flex
+            input + input
+                width: 80px
+                margin-left: 8px

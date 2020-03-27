@@ -5,8 +5,11 @@ $fonts: (Baloo2: 'Baloo 2',text: 'Nunito')
 
 @import './utilities'
 @import './components/c-container.sass'
+@import './components/c-content'
 @import './components/c-logon'
 @import './components/c-register'
+@import './components/c-profile'
+// @import './components/c-new'
 @import './components/c-links'
 @import './components/c-form-title'
 *
@@ -32,10 +35,18 @@ input, .button
     @extend %u-full-w
     height: 60px
     border-radius: 8px
-input
+input, textarea
     color: map-get($colors,input-text )
     border: 1px solid map-get($colors,input-border )
     padding: 0 24px
+textarea
+    @extend %u-full-w
+    border-radius: 8px
+    min-height: 140px
+    padding: 16px 24px
+    line-height: 24px
+    margin-top: 8px
+    resize: vertical
 .button
     background-color: map-get($colors, accent)
     border: 0

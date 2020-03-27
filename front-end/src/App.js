@@ -1,7 +1,12 @@
-import React from 'react';
-
-function App(){
-  return(<>Hello Word</> )
+import React from "react";
+import Logon from "./pages/logon"
+import './style/style.sass'
+function App() {
+  return (
+    <>
+      <Logon/>
+    </>
+  );
 }
 
 export default App;

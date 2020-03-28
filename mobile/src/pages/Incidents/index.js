@@ -8,7 +8,7 @@ import logoImg from "../../assets/logo.png";
 
 export default function Incidents() {
   const navigation = useNavigation();
-  
+
   function navigateToDetail() {
     navigation.navigate("Detail");
   }

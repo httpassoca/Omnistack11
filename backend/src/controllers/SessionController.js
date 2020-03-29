@@ -1,7 +1,12 @@
 const connection = require("../database/connection");
 module.exports = {
+  /*
+    create => make a Logon for the user
+  */ 
+  
   async create(req, res) {
     const { id } = req.body;
+    
     const ong = await connection("ongs")
       .where("id", id)
       .select("name")

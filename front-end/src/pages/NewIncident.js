@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link,useHistory } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi";
-import logoImg from "../assets/logo.svg";
+import { Link, useHistory } from "react-router-dom";
 import api from "../services/api";
+import { FiArrowLeft } from "react-icons/fi";
+
+import logoImg from "../assets/logo.svg";
 
 export default function NewIncident() {
   const [title, setTitle] = useState("");
@@ -20,11 +21,12 @@ export default function NewIncident() {
           Authorization: ongID
         }
       });
-      history.push('/profile');
+      history.push("/profile");
     } catch (error) {
       alert("Erro em adicionar caso, por favor tente novamente");
     }
   }
+
   return (
     <div className="container register">
       <div className="content">

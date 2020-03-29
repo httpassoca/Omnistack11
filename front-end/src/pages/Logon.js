@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { FiLogIn } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
+import api from "../services/api";
+import { FiLogIn } from "react-icons/fi";
+
 import heroesImg from "../assets/heroes.png";
 import logoImg from "../assets/logo.svg";
-
-import api from "../services/api";
 
 export default function Logon() {
   const [ID, setID] = useState("");
   const history = useHistory();
+
   async function handleLogin(e) {
     e.preventDefault();
     try {
@@ -20,6 +21,7 @@ export default function Logon() {
       alert("Falha no login, tente novamente.");
     }
   }
+
   return (
     <div className="container logon">
       <section className="form">

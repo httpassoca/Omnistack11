@@ -2,9 +2,9 @@ import React from "react";
 import { FiTrash2 } from "react-icons/fi";
 
 export default function Incident(props) {
+  // Pick Incident values
   const { value, description, id, title } = props.incident;
 
-  
   return (
     <li className="incident">
       <div className="incident-title">CASO</div>

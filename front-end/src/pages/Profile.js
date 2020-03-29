@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { FiPower } from "react-icons/fi";
-import logoImg from "../assets/logo.svg";
 import { Link, useHistory } from "react-router-dom";
 import api from "../services/api";
+import { FiPower } from "react-icons/fi";
+
+import logoImg from "../assets/logo.svg";
 import Incident from "../components/incident";
 
 export default function Profile() {
   const [incidents, setIncidents] = useState([]);
-  const history = useHistory();
   const ongName = localStorage.getItem("ongName");
   const ongID = localStorage.getItem("ongID");
+  const history = useHistory();
+
+  // Show Incidents in screen
   useEffect(() => {
     try {
       api
@@ -43,6 +46,7 @@ export default function Profile() {
     localStorage.clear();
     history.push('/')
   }
+
   return (
     <div className="container profile">
       <header>

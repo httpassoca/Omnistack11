@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { FlatList, View, Image, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import api from "../../services/api";
-import { FlatList, View, Image, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import styles from "./styles";
@@ -14,23 +14,26 @@ export default function Incidents() {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
+  // Redirect the user to Detail page
   function navigateToDetail(incident) {
     navigation.navigate("Detail", { incident });
   }
 
+  // Load Incidents when the user scroll page
   async function loadIncidents() {
     if (loading) return;
     if (total > 0 && incidents.lenght == total) return;
     setLoading(true);
     const res = await api.get("/incidents", {
-      params: {page}
+      params: { page }
     });
-    setIncidents([...incidents,...res.data]);
+    setIncidents([...incidents, ...res.data]);
     setTotal(res.headers["x-total-count"]);
-    setPage(page+1)
+    setPage(page + 1);
     setLoading(false);
   }
 
+  // Show Incidents on screen
   useEffect(() => {
     loadIncidents();
   }, []);
@@ -56,7 +59,7 @@ export default function Incidents() {
         showsVerticalScrollIndicator={false}
         keyExtractor={incident => String(incident.id)}
         onEndReached={loadIncidents}
-        onEndReachedThreshold={.2}
+        onEndReachedThreshold={0.2}
         renderItem={({ item: incident }) => (
           <View style={styles.incident}>
             <Text style={styles.incidentProperty}>ONG:</Text>

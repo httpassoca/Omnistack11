@@ -1,20 +1,24 @@
 import React from "react";
-import { useNavigation,useRoute } from "@react-navigation/native";
-import * as MailComposer from "expo-mail-composer";
 import { Image, View, Text, TouchableOpacity, Linking } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import * as MailComposer from "expo-mail-composer";
 import { Feather } from "@expo/vector-icons";
 
 import styles from "./styles";
 import logoImg from "../../assets/logo.png";
 
 export default function Detail() {
+  const incident = route.params.incident;
+  const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de R$${incident.value}`;
   const navigation = useNavigation();
   const route = useRoute();
-  const incident = route.params.incident
-  const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de R$${incident.value}`;
+
+  // Redirect user to Incidents page
   function navigateBack() {
     navigation.goBack();
   }
+
+  // Redirect user to send a mail to the ONG
   function sendMail() {
     MailComposer.composeAsync({
       subject: `Herói do caso "${incident.title}" `,
@@ -22,9 +26,14 @@ export default function Detail() {
       body: message
     });
   }
+
+  // Redirect user to send a whatsapp to the ONG
   function sendWhatsApp() {
-      Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`);
+    Linking.openURL(
+      `whatsapp://send?phone=${incident.whatsapp}&text=${message}`
+    );
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -35,11 +44,13 @@ export default function Detail() {
       </View>
       <View style={styles.incident}>
         <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG:</Text>
-  <Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}</Text>
+        <Text style={styles.incidentValue}>
+          {incident.name} de {incident.city}/{incident.uf}
+        </Text>
         <Text style={styles.incidentProperty}>CASO</Text>
         <Text style={styles.incidentValue}>{incident.description}</Text>
         <Text style={styles.incidentProperty}>VALOR</Text>
-  <Text style={styles.incidentValue}>{incident.value}</Text>
+        <Text style={styles.incidentValue}>{incident.value}</Text>
       </View>
 
       <View style={styles.contactBox}>

@@ -28,7 +28,11 @@ export default StyleSheet.create({
     padding: 24,
     borderRadius: 8,
     backgroundColor: "#fff",
-    marginBottom: 16
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { widht: 4, height: 4 },
+    elevation: 2
   },
   incidentProperty: { fontSize: 14, color: "#41414d", fontWeight: "bold" },
   incidentValue: {

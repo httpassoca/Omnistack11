@@ -20,9 +20,16 @@ REQUEST BODY
 */
 
 // Login
-routes.post("/sessions", SessionController.create);
+routes.post("/sessions", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        id: Joi.string().required().length(8)
+    })
+}),SessionController.create);
 
+// Get ONGs
 routes.get("/ongs", OngController.index);
+
+// Post ONGs
 routes.post(
   "/ongs",
   celebrate({
@@ -41,29 +48,43 @@ routes.post(
   OngController.create
 );
 
+// Get Profile
 routes.get(
   "/profile",
   celebrate({
     [Segments.HEADERS]: Joi.object().keys({
-      authorization: Joi.string().required()
+      authorization: Joi.string().required().length(8)
     }).unknown()
   }),
   ProfileController.index
 );
 
+// Get Incidents
 routes.get("/incidents", celebrate({
     [Segments.QUERY]: Joi.object().keys({
         page: Joi.number()
     })
 }),IncidentController.index);
-routes.post("/incidents", IncidentController.create);
 
+// Post Incident
+routes.post("/incidents", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+        value: Joi.number().required()
+    }),
+    [Segments.HEADERS]: Joi.object().keys({
+        authorization: Joi.string().required().length(8)
+    }).unknown()
+}),IncidentController.create);
+
+// Delete Incident
 routes.delete("/incidents/:id", celebrate({
     [Segments.PARAMS]: Joi.object().keys({
         id: Joi.number().required()
     }),
     [Segments.HEADERS]: Joi.object().keys({
-        authorization: Joi.string().required()
+        authorization: Joi.string().required().length(8)
     }).unknown() 
 }),IncidentController.delete);
 

@@ -27,6 +27,7 @@ export default function Logon() {
         <form onSubmit={handleLogin}>
           <h1 className="form-title">Faça seu logon</h1>
           <input
+            required
             placeholder="Seu ID"
             value={ID}
             onChange={e => setID(e.target.value)}

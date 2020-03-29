@@ -28,6 +28,7 @@ export default function Register() {
       alert(`Seu ID de acesso: ${res.data.id}`);
       history.push("/");
     } catch (err) {
+      
       alert("Erro no cadastro, tente novamente.");
     }
   }
@@ -49,29 +50,35 @@ export default function Register() {
         </section>
         <form onSubmit={handleRegister}>
           <input
+            required
             placeholder="Nome da ONG"
             value={name}
             onChange={e => setName(e.target.value)}
           />
           <input
+            required
             type="email"
             placeholder="E-mail"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)
+            }
           />
           <input
+            required
             placeholder="Whats App"
             value={whatsapp}
             onChange={e => setWhatsapp(e.target.value)}
           />
           <div className="input-group">
             <input
-              placeholder="Cidade"
+            required
+            placeholder="Cidade"
               value={city}
               onChange={e => setCity(e.target.value)}
             />
             <input
-              placeholder="UF"
+            required
+            placeholder="UF"
               value={uf}
               onChange={e => setUF(e.target.value)}
             />

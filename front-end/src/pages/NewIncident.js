@@ -39,8 +39,9 @@ export default function NewIncident() {
             <FiArrowLeft className="icon" /> Voltar para Home{" "}
           </Link>
         </section>
-        <form action="">
+        <form>
           <input
+            required
             placeholder="Título do caso"
             value={title}
             onChange={e => {
@@ -48,6 +49,7 @@ export default function NewIncident() {
             }}
           />
           <textarea
+            required
             placeholder="Descrição"
             value={description}
             onChange={e => {
@@ -55,6 +57,7 @@ export default function NewIncident() {
             }}
           />
           <input
+            required
             placeholder="Valor em reais"
             value={value}
             onChange={e => {
